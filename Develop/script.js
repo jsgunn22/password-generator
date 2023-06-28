@@ -10,9 +10,24 @@ let characters = {
 };
 
 function generatePassword() {
-  let charCount = promp(
-    "How many characters whould you like your password to contain"
-  );
+  // Conditional function for selecting character count
+  function getCharCount() {
+    let charCountInput = prompt(
+      "How many characters whould you like your password to contain.  Choose a value between 8 and 128."
+    );
+    if (charCountInput < 8) {
+      alert("That is not enough characters.");
+      getCharCount();
+    } else if (charCountInput > 128) {
+      alert("That is too many characters.");
+      getCharCount();
+    } else {
+      return charCountInput;
+    }
+  }
+
+  let charCount = getCharCount();
+
   let lowerCase = confirm(
     "Do you want your password to contain lower case letters?"
   );
@@ -23,6 +38,20 @@ function generatePassword() {
   let specialChar = confirm(
     "Do you want your password to contain special characters??"
   );
+
+  console.log(charCount);
+  d;
+  console.log(lowerCase);
+
+  let temp = [];
+
+  if (lowerCase) {
+    temp.push(characters.charLowerCase);
+  }
+
+  if (upperCase) {
+    temp.push();
+  }
 }
 
 // Get references to the #generate element
