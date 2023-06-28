@@ -43,3 +43,5 @@ There were some functions that I feel I could improve in the future. e.g when th
 ## Assets
 
 The live page can be viewed here >> https://jsgunn22.github.io/password-generator/
+
+![Preview of password generator with auto generated password and console with no errors](./assets/images/password-gen-preview.png)
