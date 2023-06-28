@@ -16,6 +16,11 @@ function generatePassword() {
     "How many characters whould you like your password to contain.  Choose a value between 8 and 128."
   );
 
+  // allows user to cancel out of function
+  if (charCount === null) {
+    return;
+  }
+
   // conditional for character count input
   while (charCount < 8 || charCount > 128) {
     if (charCount < 8) {
