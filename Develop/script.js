@@ -26,11 +26,8 @@ function generatePassword() {
     }
   }
 
-  let charCount = getCharCount();
-
-  // character type prompts
-
   function getCharTypes() {
+    // character type prompts
     let lowerCase = confirm(
       "Do you want your password to contain lower case letters?"
     );
@@ -42,24 +39,33 @@ function generatePassword() {
       "Do you want your password to contain special characters??"
     );
 
-    let temp = [];
+    let temp = []; // holds all chosen character type arrays
 
+    // common use for pushing characters to temp
+    function addCharsToTemp(charType) {
+      for (let i = 0; i < charType.length; i++) {
+        temp.push(charType[i]);
+      }
+    }
+
+    // adds each chosen character types to temp
     if (lowerCase) {
-      temp.push(characters.charLowerCase);
+      addCharsToTemp(characters.charLowerCase);
     }
 
     if (upperCase) {
-      temp.push(characters.charUpperCase);
+      addCharsToTemp(characters.charUpperCase);
     }
 
     if (numeric) {
-      temp.push(characters.charNumber);
+      addCharsToTemp(characters.charNumber);
     }
 
     if (specialChar) {
-      temp.push(characters.charSpecial);
+      addCharsToTemp(characters.charSpecial);
     }
 
+    // conditional to make sure user selected at least one character type
     if (temp.length === 0) {
       alert(
         "You mush choose at least one type of character to include in your password. Try again."
@@ -69,6 +75,20 @@ function generatePassword() {
       return temp;
     }
   }
+
+  let charCount = getCharCount();
+  let availableChars = getCharTypes();
+
+  let generatedPassword = [];
+  for (let x = 0; x < charCount; x++) {
+    generatedPassword.push(
+      availableChars[Math.floor(Math.random() * availableChars.length)]
+    );
+  }
+
+  generatedPassword = generatedPassword.join("");
+
+  return generatedPassword;
 }
 
 // Get references to the #generate element
