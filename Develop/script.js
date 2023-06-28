@@ -1,4 +1,19 @@
 // Assignment code here
+function generatePassword() {
+  let charCount = promp(
+    "How many characters whould you like your password to contain"
+  );
+  let lowerCase = confirm(
+    "Do you want your password to contain lower case letters?"
+  );
+  let upperCase = confirm(
+    "Do you want your password to contain upper case letters?"
+  );
+  let numeric = confirm("Do you want your password to contain numbers?");
+  let specialChar = confirm(
+    "Do you want your password to contain special characters??"
+  );
+}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
