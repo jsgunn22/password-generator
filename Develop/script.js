@@ -1,5 +1,6 @@
 // Assignment code here
 
+// character options
 let characters = {
   // prettier-ignore
   charLowerCase: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"],
@@ -10,21 +11,21 @@ let characters = {
 };
 
 function generatePassword() {
-  function getCharCount() {
-    return prompt(
-      "How many characters whould you like your password to contain.  Choose a value between 8 and 128."
-    );
-  }
+  // gets initial count from user
+  let charCount = prompt(
+    "How many characters whould you like your password to contain.  Choose a value between 8 and 128."
+  );
 
-  let charCount = getCharCount();
-
+  // conditional for character count input
   while (charCount < 8 || charCount > 128) {
     if (charCount < 8) {
-      alert("That is not enough characters.");
-      charCount = getCharCount();
+      charCount = prompt(
+        "That is not enough characters. Choose a value between 8 and 128."
+      );
     } else if (charCount > 128) {
-      alert("That is too many characters.");
-      charCount = getCharCount();
+      charCount = prompt(
+        "That is too many characters. Choose a value between 8 and 128."
+      );
     } else {
       charCount = charCount;
     }
@@ -97,7 +98,8 @@ function generatePassword() {
 
   let availableChars = getCharTypes();
 
-  if (availableChars.length === 0) {
+  // conditional for at least one character type being selected
+  while (availableChars.length === 0) {
     availableChars = getCharTypes();
   }
 
