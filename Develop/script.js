@@ -28,29 +28,46 @@ function generatePassword() {
 
   let charCount = getCharCount();
 
-  let lowerCase = confirm(
-    "Do you want your password to contain lower case letters?"
-  );
-  let upperCase = confirm(
-    "Do you want your password to contain upper case letters?"
-  );
-  let numeric = confirm("Do you want your password to contain numbers?");
-  let specialChar = confirm(
-    "Do you want your password to contain special characters??"
-  );
+  // character type prompts
 
-  console.log(charCount);
-  d;
-  console.log(lowerCase);
+  function getCharTypes() {
+    let lowerCase = confirm(
+      "Do you want your password to contain lower case letters?"
+    );
+    let upperCase = confirm(
+      "Do you want your password to contain upper case letters?"
+    );
+    let numeric = confirm("Do you want your password to contain numbers?");
+    let specialChar = confirm(
+      "Do you want your password to contain special characters??"
+    );
 
-  let temp = [];
+    let temp = [];
 
-  if (lowerCase) {
-    temp.push(characters.charLowerCase);
-  }
+    if (lowerCase) {
+      temp.push(characters.charLowerCase);
+    }
 
-  if (upperCase) {
-    temp.push();
+    if (upperCase) {
+      temp.push(characters.charUpperCase);
+    }
+
+    if (numeric) {
+      temp.push(characters.charNumber);
+    }
+
+    if (specialChar) {
+      temp.push(characters.charSpecial);
+    }
+
+    if (temp.length === 0) {
+      alert(
+        "You mush choose at least one type of character to include in your password. Try again."
+      );
+      getCharTypes();
+    } else {
+      return temp;
+    }
   }
 }
 
