@@ -26,22 +26,21 @@ function generatePassword() {
     }
   }
 
+  // asks user to select which character types they would like to use
   function getCharTypes() {
-    // character type prompts
-    let lowerCase = confirm(
-      "Do you want your password to contain lower case letters?"
-    );
-    let upperCase = confirm(
-      "Do you want your password to contain upper case letters?"
-    );
+    // // character type prompts
+    // prettier-ignore
+    let lowerCase = confirm("Do you want your password to contain lower case letters?");
+    // prettier-ignore
+    let upperCase = confirm("Do you want your password to contain upper case letters?");
+    // prettier-ingore
     let numeric = confirm("Do you want your password to contain numbers?");
-    let specialChar = confirm(
-      "Do you want your password to contain special characters??"
-    );
+    // prettier-ignore
+    let specialChar = confirm("Do you want your password to contain special characters??");
 
-    let temp = []; // holds all chosen character type arrays
+    let temp = []; // holds all chosen characters of selected types
 
-    // common use for pushing characters to temp
+    // common use () for pushing characters to temp
     function addCharsToTemp(charType) {
       for (let i = 0; i < charType.length; i++) {
         temp.push(charType[i]);
@@ -52,15 +51,12 @@ function generatePassword() {
     if (lowerCase) {
       addCharsToTemp(characters.charLowerCase);
     }
-
     if (upperCase) {
       addCharsToTemp(characters.charUpperCase);
     }
-
     if (numeric) {
       addCharsToTemp(characters.charNumber);
     }
-
     if (specialChar) {
       addCharsToTemp(characters.charSpecial);
     }
@@ -79,6 +75,7 @@ function generatePassword() {
   let charCount = getCharCount();
   let availableChars = getCharTypes();
 
+  // randomly selects characters from temp and pushes them to generatedPassword * number user selected
   let generatedPassword = [];
   for (let x = 0; x < charCount; x++) {
     generatedPassword.push(
@@ -86,6 +83,7 @@ function generatePassword() {
     );
   }
 
+  // accumulates the array of randomly selected characters into single string
   generatedPassword = generatedPassword.join("");
 
   return generatedPassword;
