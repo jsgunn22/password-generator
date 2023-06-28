@@ -10,33 +10,64 @@ let characters = {
 };
 
 function generatePassword() {
-  // Conditional function for selecting character count
   function getCharCount() {
-    let charCountInput = prompt(
+    return prompt(
       "How many characters whould you like your password to contain.  Choose a value between 8 and 128."
     );
-    if (charCountInput < 8) {
+  }
+
+  let charCount = getCharCount();
+
+  while (charCount < 8 || charCount > 128) {
+    if (charCount < 8) {
       alert("That is not enough characters.");
-      getCharCount();
-    } else if (charCountInput > 128) {
+      charCount = getCharCount();
+    } else if (charCount > 128) {
       alert("That is too many characters.");
-      getCharCount();
+      charCount = getCharCount();
     } else {
-      return charCountInput;
+      charCount = charCount;
     }
   }
 
   // asks user to select which character types they would like to use
   function getCharTypes() {
-    // // character type prompts
+    // // character type prompts & alert conditionals
     // prettier-ignore
     let lowerCase = confirm("Do you want your password to contain lower case letters?");
+    if (lowerCase) {
+      alert("Okay.  We will use lower case characters");
+    } else {
+      alert("Okay. We won't use lower case characters");
+    }
     // prettier-ignore
     let upperCase = confirm("Do you want your password to contain upper case letters?");
+    if (upperCase) {
+      alert("Okay. We will user upper case characters");
+    } else {
+      alert("Okay. We won't use upper case characters");
+    }
     // prettier-ingore
     let numeric = confirm("Do you want your password to contain numbers?");
+    if (numeric) {
+      alert("Okay. We will use numbers");
+    } else {
+      alert("Okay. We won't use numbers");
+    }
     // prettier-ignore
     let specialChar = confirm("Do you want your password to contain special characters??");
+    if (specialChar) {
+      alert("Okay.  We will use special characters");
+    } else {
+      if (!lowerCase && !upperCase && !numeric) {
+        // if no character type is selecter user receives alert to try again
+        alert(
+          "You mush choose at least one type of character to include in your password. Try again."
+        );
+      } else {
+        alert("Okay.  We won't use special characters");
+      }
+    }
 
     let temp = []; // holds all chosen characters of selected types
 
@@ -61,19 +92,14 @@ function generatePassword() {
       addCharsToTemp(characters.charSpecial);
     }
 
-    // conditional to make sure user selected at least one character type
-    if (temp.length === 0) {
-      alert(
-        "You mush choose at least one type of character to include in your password. Try again."
-      );
-      getCharTypes();
-    } else {
-      return temp;
-    }
+    return temp;
   }
 
-  let charCount = getCharCount();
   let availableChars = getCharTypes();
+
+  if (availableChars.length === 0) {
+    availableChars = getCharTypes();
+  }
 
   // randomly selects characters from temp and pushes them to generatedPassword * number user selected
   let generatedPassword = [];
